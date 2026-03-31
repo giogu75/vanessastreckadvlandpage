@@ -100,7 +100,7 @@ h1, h2, h3 {
 }
 
 .logo-img {
-    height: 100px; /* Enhanced height for the new landscape logo */
+    height: 90px; /* Enhanced height for the new landscape logo */
     width: auto;
     object-fit: contain;
 }
