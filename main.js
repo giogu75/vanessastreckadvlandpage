@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Contact Form submission (Mock)
+    // Contact Form submission (Formspree Integration)
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = contactForm.querySelector('button');
             const originalText = btn.innerText;
@@ -45,13 +45,34 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerText = 'Enviando...';
             btn.disabled = true;
 
-            // Simulating API call
-            setTimeout(() => {
-                alert('Obrigado pelo contato! Sua mensagem foi enviada com sucesso para o escritório Vanessa Streck.');
-                contactForm.reset();
+            const formData = new FormData(contactForm);
+
+            try {
+                const response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    alert('Obrigado pelo contato! Sua mensagem foi enviada com sucesso para o escritório Vanessa Streck.');
+                    contactForm.reset();
+                } else {
+                    const data = await response.json();
+                    if (Object.hasOwn(data, 'errors')) {
+                        alert(data["errors"].map(error => error["message"]).join(", "));
+                    } else {
+                        alert('Ops! Ocorreu um problema ao enviar seu formulário. Tente novamente mais tarde.');
+                    }
+                }
+            } catch (error) {
+                alert('Ops! Ocorreu um erro de conexão. Verifique sua internet.');
+            } finally {
                 btn.innerText = originalText;
                 btn.disabled = false;
-            }, 1500);
+            }
         });
     }
 
