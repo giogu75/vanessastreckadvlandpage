@@ -34,6 +34,13 @@ Uma *landing page* profissional, moderna e de alta autoridade desenvolvida de fo
 - **Smooth Anchor Scrolling:** Links (`#sobre`,`#contato`) rolam a tela nativamente re-calculando ativamente os `100px` extras perdidos acima do local alvo por conta do encobrimento gerado pelo tamanho constante do *Header*.
 - **Widget do Whatsapp Fixo:** Gatilho permanente e colorido sempre disponível a alcance dos celulares, fixo na parte inferior direita dos dispositivos (`bottom`/`right`), maximizando as taxas de conversão (CRO).
 
+### 6. Segurança e Integridade de Conteúdo (Proteção Anticópia)
+Implementamos uma camada de proteção ativa via JavaScript para dificultar a extração não autorizada de ativos e códigos:
+- **Bloqueio de Menu de Contexto:** Desabilita o clique direito em toda a interface, impedindo o acesso rápido a "Salvar imagem" e "Inspecionar".
+- **Interdição de DevTools:** Bloqueio de atalhos de sistema como `F12`, `Ctrl+Shift+I/J/C` e `Ctrl+U` (Ver código-fonte), protegendo a propriedade intelectual do layout.
+- **Proteção contra Drag-and-Drop:** Imagens e links foram configurados como "não arrastáveis", evitando o download involuntário ou cópia rápida de arquivos para o desktop.
+- **Bloqueio de Salvamento:** Desativação do atalho `Ctrl+S` para impedir a cópia local integral da estrutura do site.
+
 ---
 
 ## 🛠 Estack Tecnológico Arquitetural (Sem Dependências)

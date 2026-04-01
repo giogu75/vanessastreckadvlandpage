@@ -115,4 +115,38 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.services-grid .service-card').forEach((card, index) => {
         card.style.transitionDelay = `${index * 0.2}s`;
     });
+
+    // --- PROTEÇÕES DO SITE (ANTICOPIA / ANTI-DEVTOOLS) ---
+
+    // 1. Bloquear o Botão Direito do Mouse (Menu de Contexto)
+    document.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+    });
+
+    // 2. Bloquear Teclas de Atalho (F12, Ctrl+Shift+I, Ctrl+U, etc.)
+    document.addEventListener('keydown', (e) => {
+        // Bloqueia o F12
+        if (e.key === 'F12' || e.keyCode === 123) {
+            e.preventDefault();
+        }
+        // Bloqueia Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (DevTools)
+        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+            e.preventDefault();
+        }
+        // Bloqueia Ctrl+U (Ver código fonte)
+        if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+            e.preventDefault();
+        }
+        // Bloqueia Ctrl+S (Salvar página)
+        if (e.ctrlKey && (e.key === 'S' || e.key === 's')) {
+            e.preventDefault();
+        }
+    });
+
+    // 3. Bloquear o Arrastar de Imagens para fora do site
+    document.addEventListener('dragstart', (e) => {
+        if (e.target.tagName === 'IMG' || e.target.tagName === 'A') {
+            e.preventDefault();
+        }
+    });
 });
